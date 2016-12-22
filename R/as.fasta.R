@@ -33,7 +33,7 @@ as.fasta <- function(seqs) {
   if (class(seqs)=="character") {
     try(sequences <- read.dna(seqs, format = "fasta"))
     if (exists("sequences")) return(as.fasta(sequences))
-    return("Error reading your fasta file.")
+    stop("Error reading your fasta file.")
   }
   
   # then DNAbin
@@ -73,6 +73,8 @@ as.fasta <- function(seqs) {
       stop("Biostrings must be loaded to convert Biostring objects.")
     }
   }
+
+  stop(paste("Class", class(seqs), "is not accepted."))
 }
   
 
